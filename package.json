@@ -12,6 +12,16 @@
     "type": "git",
     "url": "git+https://github.com/micahp0506/nodechat.git"
   },
+  "eslintConfig": {
+    "env": {
+      "node": true,
+      "es6": true
+    },
+    "extends": "eslint:recommended",
+    "rules": {
+      "no-console": 0
+    }
+  },
   "author": "Micah Wells <micahp0506@gmail.com>",
   "license": "MIT",
   "bugs": {
@@ -20,5 +30,10 @@
   "homepage": "https://github.com/micahp0506/nodechat#readme",
   "devDependencies": {
     "nodemon": "^1.9.1"
+  },
+  "dependencies": {
+    "expres": "0.0.5",
+    "express": "^4.13.4",
+    "socket.io": "^1.4.5"
   }
 }
