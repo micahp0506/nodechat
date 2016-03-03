@@ -9,7 +9,8 @@ const ws = require('socket.io')(server);
 
 const PORT = process.env.PORT || 3000;
 const POSTGRES_URL = process.env.POSTGRES_URL || 'postgres://localhost:5432/nodechat';
-let db;
+const db = new pg.Client(POSTGRES_URL);
+
 app.set('view engine', 'jade');
 
 app.use(express.static('public'));
@@ -24,17 +25,15 @@ app.get('/chats', (req, res) => {
 
         res.send(results.rows);
     });
-})
+});
 
-pg.connect(POSTGRES_URL, (err, client) => {
-    if (err) throw err
-
-    db = client;
+db.connect ((err) => {
+    if (err) throw err;
 
     server.listen(PORT, () => {
         console.log(`Server listening on PORT ${PORT}`);
     });
-})
+});
 
 ws.on('connection', socket => {
     console.log("socket connected");
